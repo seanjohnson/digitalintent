@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% include head.html %}
+{%- if page.title -%}
+  <body class="{{ page.title }}">
+{%- else -%}
+  <body>
+{%- endif -%}
+
+{% include header.html %}
+
+{{ content }}
+
+{% include newsletter.html %}
+
+{% include footer.html %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $('#manifesto nav a').click(function() {
+    $('.item').hide();
+    $(this.getAttribute('href')).fadeIn(100);
+    $('#manifesto nav a').removeClass("active");
+    $(this).addClass("active");
+    return false;
+  });
+
+  $('#manifesto a.next').click(function() {
+    var $parent = $(this).parent().parent();
+    $parent.hide();
+    $parent.next().fadeIn(100);
+    $('#manifesto nav a').removeClass("active");
+    return false;
+  });
+
+  $('#manifesto a.prev').click(function() {
+    $(this).parent().parent().hide();
+    $(this).parent().parent().prev().fadeIn(100);
+    return false;
+  });
+</script>
+</body>
+
+</html>
